@@ -27,13 +27,14 @@ public:
 	friend void Sort(vector <video_store> &films);
 	friend void Add(vector <video_store>& films, int* _size);
 	friend void Delete(vector <video_store>& films, int* _size);
-	friend void Write(vector <video_store> &films, int _size, string s);
 	friend void Popular_film(vector <video_store> films);
 	friend ostream& operator << (ostream& os, video_store& v);
 	friend istream& operator >> (istream& is, video_store& v);	
 
 	friend void w_a_r(vector <video_store>& films, string s, int _n);
+	void reading_all();
 };
-void Read_(string s);
 void h();
 void menu();
+
+

@@ -32,6 +32,7 @@ void Search(vector <video_store> films)
     bool key = 1;
     string Name;
     string home;
+    vector <video_store> tmp;
     do
     {
 
@@ -67,9 +68,12 @@ void Search(vector <video_store> films)
                             if (films[i].Name == Name)
                             {                                
                                 cout << setw(5) << "  "; films[i].Print();
-                                key_2 = 0;
+                                key_2 = 0;  
+                                tmp.push_back(films[i]);
                             }
                         }
+                        w_a_r(tmp, "Search", 1);
+                        tmp.clear();
                         if (key_2 != 0)
                         {
                             throw 5;
@@ -91,8 +95,11 @@ void Search(vector <video_store> films)
                             {                                
                                 cout << setw(5) << "  "; films[i].Print();
                                 key_2 = 0;
+                                tmp.push_back(films[i]);
                             }
                         }
+                        w_a_r(tmp, "Search", 1);
+                        tmp.clear();
                         if (key_2 != 0)
                         {
                             throw 5;
@@ -114,8 +121,11 @@ void Search(vector <video_store> films)
                             {                                
                                 cout << setw(5) << "  "; films[i].Print();
                                 key_2 = 0;
+                                tmp.push_back(films[i]);
                             }
                         }
+                        w_a_r(tmp, "Search", 1);
+                        tmp.clear();
                         if (key_2 != 0)
                         {
                             throw 5;
@@ -138,8 +148,11 @@ void Search(vector <video_store> films)
                             {
                                 cout << setw(5) << "  "; films[i].Print();
                                 key_2 = 0;
+                                tmp.push_back(films[i]);
                             }
                         }
+                        w_a_r(tmp, "Search", 1);
+                        tmp.clear();
                         if (key_2 != 0)
                         {
                             throw 5;
@@ -163,8 +176,11 @@ void Search(vector <video_store> films)
 
                                 cout << setw(5)  << "  "; films[i].Print();
                                 key_2 = 0;
+                                tmp.push_back(films[i]);
                             }
                         }
+                        w_a_r(tmp, "Search", 1);
+                        tmp.clear();
                         if (key_2 != 0)
                         {
                             throw 5;
@@ -241,7 +257,7 @@ void Sort(vector <video_store> &films)
                         Sleep(100);
                     }
 
-
+                    w_a_r(films, "Sort", 1);
                 }
                 break;
                 case '2':
@@ -258,6 +274,7 @@ void Sort(vector <video_store> &films)
                         cout << setw(3) << i + 1 << " )"; films[i].Print();
                         Sleep(100);
                     }
+                    w_a_r(films, "Sort", 1);
                 }
                 break;
                 case '3':
@@ -274,6 +291,7 @@ void Sort(vector <video_store> &films)
                         cout << setw(3) << i + 1 << " )"; films[i].Print();
                         Sleep(100);
                     }
+                    w_a_r(films, "Sort", 1);
                 }
                 break;
                 case '4':
@@ -290,6 +308,7 @@ void Sort(vector <video_store> &films)
                         cout << setw(3) << i + 1 << " )"; films[i].Print();
                         Sleep(100);
                     }
+                    w_a_r(films, "Sort", 1);
                 }
                 break;
                 case '5':
@@ -306,6 +325,7 @@ void Sort(vector <video_store> &films)
                         cout << setw(3) << i + 1 << " )"; films[i].Print();
                         Sleep(100);
                     }
+                    w_a_r(films, "Sort", 1);
                 }
                 break;
                 case '0':
@@ -328,7 +348,7 @@ void Sort(vector <video_store> &films)
 void Add(vector <video_store>& films, int* _size)
 {
     bool key;
-
+    vector <video_store> tmp1;
     do
     {
         video_store tmp;
@@ -336,6 +356,11 @@ void Add(vector <video_store>& films, int* _size)
         films.push_back(tmp);
         system("cls");
         *_size += 1;
+
+        tmp1.push_back(tmp);
+        w_a_r(tmp1, "Add", 1);
+        tmp1.clear();
+
         cout << "Добавить еще?\n1 - да\n0 - нет" << endl;
         cin >> key;
     } while (key);
@@ -345,6 +370,7 @@ void Add(vector <video_store>& films, int* _size)
 void Delete(vector <video_store>& films, int* _size)
 {
     vector <video_store> ::iterator it = films.begin();
+    vector <video_store> tmp;
     int choice = 0;
     bool key = 1;
     do
@@ -367,6 +393,9 @@ void Delete(vector <video_store>& films, int* _size)
             }
             else
             {
+                tmp.push_back(films[choice-1]);
+                w_a_r(tmp, "Delete", 1);
+                tmp.clear();
                 advance(it, choice - 1);
                 films.erase(it);
                 key = 0;
@@ -382,134 +411,6 @@ void Delete(vector <video_store>& films, int* _size)
 
 
     } while (key);
-}
-
-void Read_(string s)
-{
-
-    bool bb = 1;
-    int size = 100;
-    video_store* _films = new video_store[size]{};
-    ifstream fin;
-
-
-    try
-    {
-        string path="";
-        if (s == "Sort")
-        {
-            //fin.open("Sort_films.txt");
-            //if (!fin.is_open())
-            //{
-            //    throw bb;
-            //}
-            //else
-            //{
-            //    cout << "File open" << endl;
-            //    int i = 0;               
-            //    h();
-            //    while (fin.read((char*)&_films[i], sizeof(video_store)))
-            //    {
-            //        cout << setw(3) << i + 1 << ")"; _films[i].Print();
-            //        i++;
-            //    }
-            //}
-            path = "Sort_films.txt";
-        }
-        else if (s == "Search")
-        {
-            path = "Search_films.txt";
-        }
-        else
-        {
-            path = "films.txt";
-        }
-
-        fin.open(path);
-
-        if (!fin.is_open())
-        {
-            throw bb;
-        }
-        else
-        {
-            cout << "File open" << endl;
-            int i = 0;
-
-            while (fin.read((char*)&_films[i], sizeof(video_store)))
-            {
-                _films[i].Print();
-            }
-
-        }
-    }
-
-    catch (bool b)
-    {
-        cout << "Ошибка, не удалось открыть файл!!!" << endl;
-    }
-
-    fin.close();
-    delete[]_films;
-    
-    cout << "End read" << endl;
-}
-
-void Write(vector <video_store> &films, int _size, string s)
-{
-    bool bb = 1;
-    ofstream fout;
-    try
-    {
-        if (s == "Sort")
-        {
-            fout.open("Sort_films.txt", ofstream::app);
-            if (!fout.is_open()) throw bb;
-
-            else
-            {
-                for (int i = 0; i < films.size(); i++)
-                {
-                    fout.write((char*)&films[i], sizeof(video_store));
-                }
-            }
-        }
-        else if (s == "Search")
-        {
-            fout.open("Search_films.txt", ofstream::app);
-
-            if (!fout.is_open()) throw bb;
-
-            else
-            {
-                fout.write((char*)&films, sizeof(video_store));
-            }
-        }
-        else
-        {
-            fout.open("films.txt", ofstream::out);
-
-            if (!fout.is_open())  throw bb; 
-
-            else
-            {
-                for (int i = 0; i < films.size(); i++)
-                {
-                    fout.write((char*)&films[i], sizeof(video_store));
-
-                }
-            }
-        }
-    }
-
-    catch (bool b)
-    {
-        cout << "Ошибка, не удалось открыть файл!!!" << endl;
-    }
-
-    fout.close();
-    cout << "End of write" << endl;
-    //system("person_all.txt");
 }
 
 void Popular_film(vector <video_store> films)
@@ -532,7 +433,8 @@ void Popular_film(vector <video_store> films)
 
 ostream& operator<< (ostream& os, video_store& v)
 {
-    os  << v.Name  << v.Genre  << v.Derected << v.Rating << v.Price << endl;
+    os  <<setw(20)<< v.Name << setw(15) << v.Genre << setw(20) << v.Derected 
+        << setw(6) << v.Rating << setw(8) << v.Price << endl;
 
     return os;
 }
@@ -569,46 +471,60 @@ void w_a_r(vector<video_store>& films, string s, int _n)
     {
         path = "Search_films.txt";
     }
+    else if (s == "Delete")
+    {
+        path = "Delete_film.txt";
+    }
+    else if (s == "Add")
+    {
+        path = "Add_film.txt";
+    }
     else
     {
         path = "films.txt";
     }
 
-    fstream fs;
-    fs.open(path, fstream::in | fstream::out | fstream::app);
-
     try
     {
-        if (!fs.is_open())
-        {
-            throw 5;
-        }
-        else
-        {
-            cout << "Файл открыт" << endl;
-            if (_n==1)
-            {
-                for (int i = 0; i < films.size(); i++)
-                {
-                    fs.write((char*)&films[i], sizeof(video_store));
-                }
-            }
-            else if (_n==2)
-            {
-                int size = 100;
-                video_store* _films = new video_store[size]{};
-                int i = 0;
-                while (fs.read((char*)&_films[i], sizeof(video_store)))
-                {
-                    _films[i].Print();
-                    i++;
-                }
-                delete[]_films;
-            }
 
+        if (_n==1)
+        {
+             ofstream fz;
+             if (path == "films.txt")
+                 fz.open(path, ofstream::out);
+             else
+                 fz.open(path, ofstream::app);
 
+             if (!fz.is_open())
+                 throw 5;
+              else
+              {
+                  cout << "Файл открыт" << endl;
+                  for (auto it = films.begin(); it != films.end(); it++)
+                      fz << *it;
+                  cout << "Файл записан" << endl;
+              }
+              fz.close(); 
         }
-        fs.close();
+        else if (_n==2)
+        {
+            ifstream is;
+            is.open(path);
+            if (!is.is_open())
+                throw 5;
+            else
+            {
+                cout << "Файл открыт" << endl;
+                video_store tmp1;
+                while (is >> tmp1.Name >> tmp1.Genre >> tmp1.Derected >>
+                    tmp1.Rating >> tmp1.Price)
+                {
+                    films.push_back(tmp1);
+                }
+                is.close();
+            }
+        }
+
     }
 
     
@@ -633,10 +549,79 @@ void menu()
     cout << "3 - Самый популярный в жанре" << endl;
     cout << "4 - Удалить" << endl;
     cout << "5 - Добавить" << endl;
-    //cout << "6 - Считать и записать" << endl << endl;
+    cout << "6 - Считать и записать" << endl ;
+    cout << "7 - Считать все файлы" << endl << endl;
     cout << "0 - Выход" << endl ;
 
 
     //cout << "Считать" << endl;
     //cout << "Записать" << endl;
+}
+
+void  video_store::reading_all()
+{
+    vector<video_store> tmp;
+    string path = "";
+
+    try
+    {
+        h();
+        for (int i = 0; i < 5; i++)
+        {
+            if (i == 0)
+            {
+                path = "Sort_films.txt";
+            }
+            else if (i == 1)
+            {
+                path = "Search_films.txt";
+            }
+            else if (i == 2)
+            {
+                path = "Delete_film.txt";
+            }
+            else if (i == 3)
+            {
+                path = "Add_film.txt";
+            }
+            else
+            {
+                path = "films.txt";
+            }
+
+            ifstream is;
+            is.open(path);
+            if (!is.is_open())
+            {
+                throw 5;
+            }
+            else
+            {
+                cout << "-------------------------------------------------------" << endl;
+                video_store tmp1;
+                while (is >> tmp1.Name >> tmp1.Genre >> tmp1.Derected >>
+                    tmp1.Rating >> tmp1.Price)
+                {
+                    tmp.push_back(tmp1);
+                }
+                is.close();
+                if (i == 0)		 cout << "Сортировка:" << endl << endl;
+                else if (i == 1) cout << "Поиск:" << endl << endl;
+                else if (i == 2) cout << "Удаление:" << endl << endl;
+                else if (i == 3) cout << "Добавление:" << endl << endl;
+                else			 cout << "Все фильмы:" << endl << endl;
+
+                for (int i = 0; i < tmp.size(); i++)
+                {
+                    tmp[i].Print();
+                }
+                cout << "-------------------------------------------------------" << endl;
+                tmp.clear();
+            }
+        }
+    }
+    catch (int n)
+    {
+        cout << "Ошибка чтения!!!" << endl;
+    }
 }
